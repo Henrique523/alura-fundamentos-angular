@@ -13,6 +13,8 @@ export class PhotoListComponent implements OnInit {
   title = 'Alurapic';
   photos: IPhoto[] = [];
 
+  filter = '';
+
   constructor(
     private photoService: PhotoService,
     private activatedRoute: ActivatedRoute
@@ -27,4 +29,8 @@ export class PhotoListComponent implements OnInit {
     );
   }
 
+  handleFilter($event: KeyboardEvent) {
+    // @ts-ignore
+    this.filter = $event.target.value;
+  }
 }
