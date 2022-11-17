@@ -1,0 +1,14 @@
+<div class="row text-center mt-3 mb-3 justify-content-center">
+  <div class="col-3">
+    <form>
+      <input
+        class="rounded form-control"
+        type="search"
+        placeholder="search..."
+        autofocus
+        (keyup)="handleFilter($event)"
+        [value]="value"
+      >
+    </form>
+  </div>
+</div>
