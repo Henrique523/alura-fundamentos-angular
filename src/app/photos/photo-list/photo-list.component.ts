@@ -11,7 +11,6 @@ import {PhotoService} from "../photo/photo.service";
   styleUrls: ['./photo-list.component.scss']
 })
 export class PhotoListComponent implements OnInit {
-  title = 'Alurapic';
   photos: IPhoto[] = [];
   hasMore: boolean = true;
   currentPage = 1;
