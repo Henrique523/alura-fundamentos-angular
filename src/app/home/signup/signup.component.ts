@@ -1,23 +1,29 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
+
 import {lowerCaseValidator} from "../../shared/validators/lower-case.validator";
 import {UserNotTakenValidatorService} from "./user-not-taken.validator.service";
 import {INewUser} from "../../interfaces/INewUser";
 import {SignupService} from "./signup.service";
-import {Router} from "@angular/router";
+import {PlatformDetectorService} from "../../core/platform-detector/platform-detector.service";
 
 @Component({
   templateUrl: './signup.component.html',
+  providers: [UserNotTakenValidatorService]
 })
 export class SignupComponent implements OnInit {
   // @ts-ignore
   signupForm: FormGroup;
+  // @ts-ignore
+  @ViewChild('inputEmail') inputEmail: ElementRef<HTMLInputElement>;
 
   constructor(
     private formBuilder: FormBuilder,
     private userNotTakenValidatorService: UserNotTakenValidatorService,
     private signUpService: SignupService,
-    private router: Router
+    private router: Router,
+    private platformDetector: PlatformDetectorService
   ) {}
 
   ngOnInit(): void {
@@ -46,6 +52,8 @@ export class SignupComponent implements OnInit {
         Validators.maxLength(14),
       ]],
     });
+
+    this.platformDetector.isPlatformBrowser() && this.inputEmail.nativeElement.focus();
   }
 
   signup() {
