@@ -14,6 +14,8 @@ export class PhotoFormComponent implements OnInit {
   photoForm: FormGroup;
   // @ts-ignore
   file: File;
+  // @ts-ignore
+  preview: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -41,6 +43,13 @@ export class PhotoFormComponent implements OnInit {
   handleChangeEvent(event: Event) {
     // @ts-ignore
     this.file = event.target.files[0];
+
+    const reader = new FileReader();
+
+    reader.onload = (event: any) => this.preview = event.target.result;
+
+    reader.readAsDataURL(this.file);
+
     console.log(this.file);
   }
 
