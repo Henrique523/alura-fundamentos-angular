@@ -10,7 +10,7 @@ import {PhotoComponent} from "./photo.component";
   ],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   exports: [PhotoComponent]
 })
