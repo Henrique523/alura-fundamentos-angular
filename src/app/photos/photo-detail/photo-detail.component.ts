@@ -1,21 +1,20 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
+import {Observable} from "rxjs";
 
 import {PhotoService} from "../photo/photo.service";
 import IPhoto from "../../interfaces/IPhoto";
-import {Observable} from "rxjs";
-import {IPhotoComment} from "../../interfaces/IPhotoComment";
 
 @Component({
   templateUrl: './photo-detail.component.html',
-  styleUrls: ['./photo-detail.component.scss']
 })
 export class PhotoDetailComponent implements OnInit {
 
   // @ts-ignore
   photo$: Observable<IPhoto>;
   // @ts-ignore
-  comments$: Observable<IPhotoComment[]>;
+  photoId: number;
+
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -23,8 +22,8 @@ export class PhotoDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = this.activatedRoute.snapshot.params.photoId;
-    this.photo$ = this.photoService.findById(id);
-    this.comments$ = this.photoService.getComments(id);
+    this.photoId = this.activatedRoute.snapshot.params.photoId;
+    // @ts-ignore
+    this.photo$ = this.photoService.findById(this.photoId);
   }
 }
