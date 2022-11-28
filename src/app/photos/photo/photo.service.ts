@@ -2,6 +2,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import IPhoto from "../../interfaces/IPhoto";
 import {Observable} from "rxjs";
 import {Injectable} from "@angular/core";
+import {IPhotoComment} from "../../interfaces/IPhotoComment";
 
 const API_URL = "http://localhost:3000";
 
@@ -31,5 +32,9 @@ export class PhotoService {
 
   findById(id: string) {
     return this.http.get<IPhoto>(`${API_URL}/photos/${id}`);
+  }
+
+  getComments(photoId: number) {
+    return this.http.get<IPhotoComment[]>(`${API_URL}/photos/${photoId}/comments`);
   }
 }
