@@ -18,7 +18,7 @@ import {PhotoDetailModule} from "./photo-detail/photo-detail.module";
     HttpClientModule,
     CommonModule,
     RouterModule,
-    FormsModule
+    FormsModule,
   ],
 })
 export class PhotosModule {

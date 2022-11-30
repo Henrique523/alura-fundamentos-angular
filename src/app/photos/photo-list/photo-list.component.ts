@@ -4,6 +4,7 @@ import {debounceTime, Subject} from "rxjs";
 
 import IPhoto from "../../interfaces/IPhoto";
 import {PhotoService} from "../photo/photo.service";
+import {LoadingService} from "../../shared/components/loading/loading.service";
 
 @Component({
   selector: 'app-photo-list',
