@@ -1,7 +1,8 @@
 import {HttpClient, HttpParams} from "@angular/common/http";
-import IPhoto from "../../interfaces/IPhoto";
-import {Observable} from "rxjs";
 import {Injectable} from "@angular/core";
+import {catchError, map, Observable, of, throwError} from "rxjs";
+
+import IPhoto from "../../interfaces/IPhoto";
 import {IPhotoComment} from "../../interfaces/IPhotoComment";
 
 const API_URL = "http://localhost:3000";
@@ -44,5 +45,17 @@ export class PhotoService {
 
   removePhoto(photoId: number) {
     return this.http.delete(`${API_URL}/photos/${photoId}`);
+  }
+
+  like(photoId: number) {
+    return this.http.post(
+      `${API_URL}/photos/${photoId}/like`, {}, { observe: 'response' }
+    )
+      .pipe(map((res) => true))
+      .pipe(catchError(err => {
+        return err.status == '304'
+          ? of(false)
+          : throwError(err);
+      }));
   }
 }
