@@ -4,8 +4,9 @@ import {catchError, map, Observable, of, throwError} from "rxjs";
 
 import IPhoto from "../../interfaces/IPhoto";
 import {IPhotoComment} from "../../interfaces/IPhotoComment";
+import {environment} from "../../../environments/environment";
 
-const API_URL = "http://localhost:3000";
+const API_URL = environment.apiUrl;
 
 @Injectable({
   providedIn: "root"
