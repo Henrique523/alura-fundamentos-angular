@@ -33,7 +33,7 @@ const routes: Routes = [
   {
     path: "p/add",
     component: PhotoFormComponent,
-    canActivate: [RequiresAuthenticationGuard],
+    // canActivate: [RequiresAuthenticationGuard],
     data: {
       title: 'Photo Upload'
     }
