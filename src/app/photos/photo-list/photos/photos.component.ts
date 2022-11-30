@@ -14,7 +14,7 @@ export class PhotosComponent implements OnChanges {
   constructor() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes["photos"]) {
+    if (changes.photos) {
       this.rows = this.groupColumns(this.photos);
     }
   }
@@ -22,8 +22,10 @@ export class PhotosComponent implements OnChanges {
   groupColumns(photos: IPhoto[]) {
     const newRows = [];
 
-    for (let index = 0; index < photos.length; index += 3) {
-      newRows.push(photos.slice(index, index + 3));
+    if (Array.isArray(photos)) {
+      for (let index = 0; index < photos.length; index += 3) {
+        newRows.push(photos.slice(index, index + 3));
+      }
     }
 
     return newRows;

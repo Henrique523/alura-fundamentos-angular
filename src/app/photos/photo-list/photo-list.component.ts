@@ -13,7 +13,7 @@ import {LoadingService} from "../../shared/components/loading/loading.service";
 })
 export class PhotoListComponent implements OnInit {
   photos: IPhoto[] = [];
-  hasMore: boolean = true;
+  hasMore = true;
   currentPage = 1;
 
   filter = '';
@@ -27,7 +27,7 @@ export class PhotoListComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       this.userName = params.username;
-      this.photos = params.photos;
+      this.photos =this.activatedRoute.snapshot.data['photos'];
     });
   }
 

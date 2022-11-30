@@ -19,6 +19,7 @@ export class AlertComponent {
       (alert) => {
         if (!alert) {
           this.alerts = [];
+          return;
         }
 
         this.alerts.push(alert);
