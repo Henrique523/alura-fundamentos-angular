@@ -8,6 +8,7 @@ import {PhotoListResolver} from "./photos/photo-list/photo-list.resolver";
 import {HomeModule} from "./home/home.module";
 import {RequiresAuthenticationGuard} from "./core/auth/requires-authentication.guard";
 import {PhotoDetailComponent} from "./photos/photo-detail/photo-detail.component";
+import {GlobalErrorComponent} from "./errors/global-error/global-error.component";
 
 const routes: Routes = [
   {
@@ -50,6 +51,13 @@ const routes: Routes = [
     component: NotFoundComponent,
     data: {
       title: 'Not Found'
+    }
+  },
+  {
+    path: "error",
+    component: GlobalErrorComponent,
+    data: {
+      title: 'Error'
     }
   },
   {
